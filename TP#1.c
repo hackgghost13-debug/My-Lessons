@@ -56,16 +56,16 @@ void yesOrNo()
 int main(void)
 {
     int TP = 0;
-    printf("[1] TP#1 ");
-    printf("[2] TP#2 ");
-    printf("[3] TP#3 ");
+    printf("[1] TP#1\n");
+    printf("[2] TP#2\n");
+    printf("[3] TP#3\n");
     printf("[4] TP#4\n");
-    printf("[5] TP#5 ");
-    printf("[6] TP#6 ");
-    printf("[7] TP#7 ");
+    printf("[5] TP#5\n");
+    printf("[6] TP#6\n");
+    printf("[7] TP#7\n");
     printf("[8] TP#8\n");
-    printf("[9] TP#9");
-    printf("[9] TP#10\n");
+    printf("[9] TP#9\n");
+    printf("[10] TP#10\n");
     printf("Enter your case :");
 
     scanf("%d", &TP);
@@ -183,23 +183,55 @@ int main(void)
         // Declaration part
         int num01 = 0;
         int num02 = 0;
+        char op = '\0';
         int Result = 0;
+        float result = 0.0f;
         // Code
-        printf(":Operations(+-*%)\n");
-        printf("Please enter 2 integer numbers :\n");
-        printf("First number :");
-        scanf("%d", &num01);
-        printf("Second number :");
-        scanf("%d", &num02);
+        printf("Operations(+-*/)\n");
 
-        Result = num01 + num02;
-        printf("Sum :%d + %d = %d\n", num01, num02, Result);
-        Result = num01 - num02;
-        printf("Difference :%d - %d = %d\n", num01, num02, Result);
-        Result = num01 * num02;
-        printf("Product :%d x %d = %d\n", num01, num02, Result);
-        Result = num01 % num02;
-        printf("Quotient :%d mod %d = %d\n", num01, num02, Result);
+        while (!(op == '+' || op == '-' || op == '*' || op == '/'))
+        {
+            printf("Enter the opretor : [+,-,*,/]"); //  if he entre an operation differnte de mes ops
+            scanf(" %c", &op);
+        }
+
+        if (op == '/')
+        {
+            while (num02 == 0)
+            {
+                printf("Please enter 2 integer numbers :\n");
+                printf("First number :");
+                scanf("%d", &num01);
+                printf("Second number :");
+                scanf("%d", &num02);
+            }
+            result = (float)num01 / (float)num02; // ({datatype}){name} : to change the type of the variable
+            printf("Division :%d / %d = %.2f\n", num01, num02, result);
+        }
+        else
+        {
+            printf("Please enter 2 integer numbers :\n");
+            printf("First number :");
+            scanf("%d", &num01);
+            printf("Second number :");
+            scanf("%d", &num02);
+
+            if (op == '+')
+            {
+                Result = num01 + num02;
+                printf("Sum :%d + %d = %d\n", num01, num02, Result);
+            }
+            else if (op == '-')
+            {
+                Result = num01 - num02;
+                printf("Difference :%d - %d = %d\n", num01, num02, Result);
+            }
+            else if (op == '*')
+            {
+                Result = num01 * num02;
+                printf("Product :%d x %d = %.d\n", num01, num02, Result);
+            }
+        }
 
         printf("******Thank you :3 ********\n");
         break;
@@ -211,16 +243,24 @@ int main(void)
         int Min = 0;
         int inMin = 0;
         i = true;
+        bool isForm;
         // Code
         printf("Conversion to minutes\n");
         while (i == true)
         {
-            printf("Enter the hours :\n");
-            scanf("%d", &H);
-            printf("Enter the min :\n");
-            scanf("%d", &Min);
+            printf("Enter the time :\n");
+            while (!(scanf("%d : %d", &H, &Min)))
+            {
+                printf("Please enter the time in this form [HH:MM]\n");
+                isForm = scanf("%d : %d", &H, &Min);
+                if (!isForm)
+                {
+                    H = 0;
+                    Min = 0;
+                }
+            }
 
-            tH = H;
+            tH = H; // To store the hour's version to display it later
 
             H = H * 60;
             inMin = H + Min;
@@ -342,11 +382,11 @@ int main(void)
         // Code
         printf("Circular Permutation Program\n");
         printf("Enter X :");
-        scanf("%d",&X);
+        scanf("%d", &X);
         printf("Enter Y :");
-        scanf("%d",&Y);
+        scanf("%d", &Y);
         printf("Enter Z :");
-        scanf("%d",&Z);
+        scanf("%d", &Z);
 
         temp = X;
         X = Y;
@@ -354,11 +394,10 @@ int main(void)
         Z = temp;
 
         printf("OH !! I think I mix it up :3\n");
-        printf("X =%d\n",X);
-        printf("Y =%d\n",Y);
-        printf("Z =%d\n",Z);
+        printf("X =%d\n", X);
+        printf("Y =%d\n", Y);
+        printf("Z =%d\n", Z);
         printf("Sorry ☺☺☺☺☺\n");
-
 
         printf("******Thank you :3 ********\n");
         break;
