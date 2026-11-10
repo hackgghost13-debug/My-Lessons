@@ -9,8 +9,16 @@
 /*
 comment of multiple-lines
 */
+// return = returns a value back to where you call a function
+// we must return a the same data type we define to the function that we work with
 char name_0[50] = "";
-
+void hello(char name[], int age); // function prototype
+// int g = 0; // In The Global Scope (hard to debug)
+int sub(int x, int y)
+{
+   int result = x - y; // local_scope
+   return result;
+}
 void happyBirthDay(int age_0)
 {
    printf("\nHappy Birthday to YOU !!");
@@ -19,6 +27,60 @@ void happyBirthDay(int age_0)
    printf("\nHappy Birthday to YOU,%s !!", name_0); // or you can just put it in the function and put the vzriable out the function
    printf("\nHappy Birthday to YOU !!");
    printf("\nYou Are %d years old now !!\n", age_0);
+}
+double square(double num)
+{
+
+   return num * num;
+}
+double cube(double num_1)
+{
+   double result = num_1 * num_1 * num_1;
+   return result;
+}
+double power(double C_1, int P_1)
+{
+   int i = 0;
+   double result = 1;
+   for (int i = 0; i < P_1; i++)
+   {
+      result *= C_1;
+   }
+
+   return result;
+}
+double ABS(double V_1)
+{
+
+   double result;
+
+   V_1 = ((V_1 * V_1) / V_1 + V_1) / 2;
+
+   if (V_1 >= 0)
+   {
+      result = V_1;
+   }
+   else
+   {
+      result = -V_1;
+   }
+
+   return result;
+}
+double getMax(double C_2, double V_2)
+{
+   if (C_2 < V_2)
+   {
+      return V_2;
+   }
+   else if (C_2 > V_2)
+   {
+      return C_2;
+   }
+   else
+   {
+      return V_2, C_2;
+   }
 }
 int main()
 { // make all the progrm work
@@ -439,5 +501,105 @@ int main()
    happyBirthDay(age_0);
    happyBirthDay(age_0);
    happyBirthDay(age_0);
+   // return
+   double X_3 = square(2.1);
+   double Y_3 = square(3.2);
+   double Z_3 = square(4.7);
+
+   printf("%lf\n", X_3);
+   printf("%lf\n", Y_3);
+   printf("%lf\n", Z_3);
+
+   X_3 = cube(2.1);
+   Y_3 = cube(3.2);
+   Z_3 = cube(4.7);
+
+   printf("%lf\n", X_3);
+   printf("%lf\n", Y_3);
+   printf("%lf\n", Z_3);
+
+   X_3 = power(2, 8);
+   printf("%f\n", X_3);
+
+   Y_3 = ABS(-2);
+   printf("%f\n", Y_3);
+
+   Z_3 = getMax(4, 1);
+   printf("%lf\n", Z_3);
+   // variable scope =  Refers to where a variable is recognized and accessible
+   //                   Variables can share the same name if they're in different scope "{}"
+   int result = sub(100, 4);
+
+   printf("%d\n", result);
+   // Function Prototype : Provide the compiler w/ information about a function's:
+   //                      name , return type , and parametrs before its actual definition .
+   //                      Enable type checking and allows function to be used before they're define .
+   //                      Improve redability , organization, and helps prevent errors
+   //                      Let as write the function after the main function
+
+   hello("sam", 25);
+   //  while loop : Countiue running some code while the condition is true
+   //               Condition must be true for us to enter while loop
+   //               !!!We only enter the while loop if the condition is true!!!
+   // do-while loop : Enter first the loop then check if the condition is true
+   /* while(1 == 1){
+          printf("FOREVER LOOP!!!");
+  }*/
+   int number_1 = 0;
+   int age_5 = 6;
+   char name_6[50] = "";
+   int cont_0 = 0;
+   bool isRunning = true;
+   char response = '\0';
+   // The condition must be true to begin with
+   while (number_1 <= 0)
+   {
+      printf("Enter a number greater then 0: ");
+      scanf("%d", &number_1);
+   }
+
+   do
+   {
+      printf("Enter your age :");
+      scanf("%d", &age_5);
+   } while (age_5 <= 0 || age_5 > 200);
+   getchar();
+   printf("Enter the name :");
+   fgets(name_6, sizeof(name_6), stdin);
+   name_6[strlen(name_6) - 1] = '\0';
+
+   while (strlen(name_6) == 0 && cont_0 < 1)
+   {
+      printf("You didn't enter your name\n");
+      printf("Please Enter you name : \n");
+      fgets(name_6, sizeof(name_6), stdin);
+      name_6[strlen(name_6) - 1] = '\0';
+      cont_0++;
+   }
+   while (strlen(name_6) == 0)
+   {
+      printf("MAN!!\n");
+      printf("Just enter you name already , don't worry I won't tell any one\n");
+      fgets(name_6, sizeof(name_6), stdin);
+      name_6[strlen(name_6) - 1] = '\0';
+   }
+   printf("Finally , thank you\n");
+
+   while (isRunning)
+   {
+      printf("You are playing right now\n");
+      printf("You want to continue?([Y]yes,[N]no):");
+      scanf(" %c", &response);
+      if (response != 'Y' && response != 'y')
+      {
+         isRunning = false;
+      }
+   }
+
    return 0;
+}
+void hello(char name[], int age)
+{
+   printf("Hello ,%s!\n", name);
+   printf("You are %d years old\n", age);
 }

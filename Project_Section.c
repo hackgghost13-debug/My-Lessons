@@ -252,6 +252,56 @@ int main(void)
   }
   getchar();
   printf("the result %.2f\n", result);
+  // Reverce :
+  // Declaration part:
+  int Re = 0;
+  int N = 0;
+  int q = 1;
+  int r = 0;
+  // Code :
+  while (N <= 0)
+  {
+    printf("Enter a positive integer :");
+    scanf("%d", &N);
+  }
+  while (q != 0)
+  {
+    q = N / 10;
+    r = N % 10;
+    N = q;
+    Re = (r + Re) * 10;
+  }
+  Re = Re / 10;
+  printf("The reverse : %09d\n", Re);
+  // primer Timer
+    // Declaration part :
+    int H;
+    int min;
+    int sec;
+    bool isTrue = false;
 
+    do
+    {
+        printf("Put The Timer (in this form hh:mm:ss):");
+        scanf("%d : %d : %d", &H, &min, &sec);
+        isTrue = (H >= 0 && H < 24) && (min >= 0 && min < 60) && (sec >= 0 && sec < 60);
+    } while (!isTrue); // لتاكد من اذا كانت قيم الوقت صحيحة
+    while (H >= 0 && min >= 0 && sec >= 0)
+    {
+        while (min >= 0)
+        {
+            while (sec >= 0)
+            {
+                printf("%02d : %02d : %02d \n", H, min, sec);
+                sleep(1);
+                sec--;
+            }
+            sec = 59;
+            min--;
+        }
+        min = 59;
+        H--;
+    }
+    printf("Time is up");
   return 0;
 };
