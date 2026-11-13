@@ -5,33 +5,53 @@
 #include <stdlib.h>
 #include <unistd.h> // linux / mac
 // # include <windows.h> // Win
-int temp()
-{
-    // for loop : Repete some code limited number of times
-    //            for(Initialization; Condition : Update)
+#include <time.h>
 
-    for (int i = 2 /*start point*/; i <= 100 /*end point*/; i += 2)
-    {
-        printf("%d\n", i);
-    }
-    for (int i = 100 /*start point*/; i >= 0 /*end point*/; i -= 3)
-    {
-        printf("%03d\n", i);
-    }
-    printf("************************************************************************\n");
-    for (int i = 10; i >= 1; i--)
-    {
-        printf("%02d\n", i);
-        sleep(1); // the number in seconds // linux or mac
-                  // Sleep(1000); seconds in ms // win
-    }
-    printf("BOOOOOM!!\nRamadan mubarak\n");
-}
 int main()
 {
-    // break = Break out of a loop (STOP)
-    // continue = Skip current cycle of a loop (SKIP)
+    int rows; // 10
+    char s = '*';
+    int g = 0;
 
+    scanf("%d", &rows);
+    for (int i = rows; i >= 0; i--) // Of Rows // 9 times + 1
+    {
+        for (int j = i; j >= 0; j--) // number of stars "*" that get print
+        {                            // in first line : 9 times + 1
+                                     // in scend line : 8 times + 1
+            printf(" ");
+        }
+        for (int k = 0; k <= (rows - i) * 2; k++) // number of stars "*" that get print
+        {                                         // in first line : 0 times + 1 = the number of symbol that get print
+                                                  // in scend line : 2 times + 1
+                                                  // in 3rd line : 4 times + 1
+            printf("%c", s);
+        }
+
+        for (int l = (rows - g) * 2; l >= 0; l--)
+        {
+            printf(" ");
+        }
+        for (int l = 0; l <= (rows - i) * 2; l++)
+        {
+            printf("*");
+        }
+        g++;
+        printf("\n");
+    }
+
+    for (int i = 0; i <= rows; i++) // Of Rows
+    {
+        for (int j = 0; j <= i * 2; j++) // number of stars "*" that get print
+        {
+            printf(" ");
+        }
+        for (int k = ((rows - i ) * 4) + 2; k >= 0; k--) // number of stars "*" that get print
+        {
+            printf("%c", s);
+        }
+        printf("\n");
+    }
 
     return 0;
 }

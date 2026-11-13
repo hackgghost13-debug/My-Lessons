@@ -3,6 +3,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
+
+int getComuterChoice();
+int getUserChoice();
+int checkWinner(int x, int y);
 
 int main(void)
 { // SHOPING CART PROGRAM
@@ -274,34 +280,144 @@ int main(void)
   Re = Re / 10;
   printf("The reverse : %09d\n", Re);
   // primer Timer
-    // Declaration part :
-    int H;
-    int min;
-    int sec;
-    bool isTrue = false;
+  // Declaration part :
+  int H;
+  int min;
+  int sec;
+  bool isTrue = false;
 
-    do
-    {
-        printf("Put The Timer (in this form hh:mm:ss):");
-        scanf("%d : %d : %d", &H, &min, &sec);
-        isTrue = (H >= 0 && H < 24) && (min >= 0 && min < 60) && (sec >= 0 && sec < 60);
-    } while (!isTrue); // لتاكد من اذا كانت قيم الوقت صحيحة
-    while (H >= 0 && min >= 0 && sec >= 0)
-    {
-        while (min >= 0)
-        {
-            while (sec >= 0)
-            {
-                printf("%02d : %02d : %02d \n", H, min, sec);
-                sleep(1);
-                sec--;
-            }
-            sec = 59;
-            min--;
-        }
-        min = 59;
-        H--;
+  do
+  {
+    printf("Put The Timer (in this form hh:mm:ss):");
+    scanf("%d : %d : %d", &H, &min, &sec);
+    isTrue = (H >= 0 && H < 24) && (min >= 0 && min < 60) && (sec >= 0 && sec < 60);
+  } while (!isTrue); // لتاكد من اذا كانت قيم الوقت صحيحة
+  //***************************************
+  while (H >= 0 && min >= 0 && sec >= 0)
+  { // of hours
+    while (min >= 0)
+    { // of minuts
+      while (sec >= 0)
+      { // of seconds
+        printf("%02d : %02d : %02d \n", H, min, sec);
+        sleep(1);
+        sec--;
+      }
+      sec = 59;
+      min--;
     }
-    printf("Time is up");
+    min = 59;
+    H--;
+  }
+  printf("Time is up\n");
+  // Number Guessing game
+  // Declaration Part:
+  int max;
+  int min_;
+  int num_;
+  int scoure;
+  // Code :
+  printf("welcome to the number guessing game \n");
+  sleep(1);
+  printf("First, set the rang of your game\n");
+  sleep(1);
+  do
+  {
+    printf("Set the maximum (Max) :");
+    scanf("%d", &max);
+    printf("Set the minimum (Min) :");
+    scanf("%d", &min_);
+  } while (max <= min_);
+  sleep(1);
+  printf(" Guess the number  between %d - %d :", min_, max);
+
+  srand(time(NULL));
+  int randomNumber = (rand() % (max - min_ + 1) + min_);
+  do
+  {
+    scanf("%d", &num_);
+    if (num_ < randomNumber)
+    {
+      printf("Too LOW !!\n");
+    }
+    else if (num_ > randomNumber)
+    {
+      printf("Too HIGH !!\n");
+    }
+    else
+    {
+      break;
+    }
+    scoure++;
+  } while (randomNumber != num_);
+  printf("!!Winner!!\n");
+  printf("Scoure : %d try\n", scoure);
+
+  // ROCK PAPER SCISSORS
+  srand(time(NULL));
+  printf("ROCK PAPER SCISSORS\n");
+  int userop = getUserChoice();
+  int computerop = getComuterChoice();
+
+  switch (userop)
+  {
+  case 1:
+    printf("You Chosse Rock\n");
+    break;
+  case 2:
+    printf("You Chosse Paper\n");
+  default:
+    printf("You Chosse Scissors\n");
+    break;
+  }
+  switch (computerop)
+  {
+  case 1:
+    printf("The CPU Chosse Rock\n");
+    break;
+  case 2:
+    printf("The CPU Chosse Paper\n");
+  default:
+    printf("The CPU Chosse Scissors\n");
+    break;
+  }
+
+  checkWinner(userop, computerop);
+
   return 0;
-};
+}
+
+int getComuterChoice()
+{
+  int randomChoise = (rand() % (3 - 1 + 1) + 1);
+  return randomChoise;
+}
+int getUserChoice()
+{
+  int Option;
+
+  printf("What's your option:\n");
+  do
+  {
+    printf("1.Rock\n2.Paper\n3.Scissors\nOption:");
+    scanf("%d", &Option);
+  } while (Option < 1 || Option > 3);
+  return Option;
+}
+int checkWinner(int x, int y)
+{
+  bool winStat;
+  winStat = (x - y) == -2 && 1;
+  if (winStat)
+  {
+    printf("You WIN!!\n");
+  }
+  else if (x == y)
+  {
+    printf("DRAW\n");
+  }
+  else
+  {
+    printf("You LOSE!!\n");
+  }
+}

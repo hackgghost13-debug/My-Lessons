@@ -4,6 +4,8 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include <unistd.h> // Linux and mac
+// # include <windows.h> // windows
 // comment of single-line
 
 /*
@@ -595,7 +597,146 @@ int main()
          isRunning = false;
       }
    }
+   // for loop : Repete some code limited number of times
+   //            for(Initialization; Condition : Update)
 
+   for (int i = 2 /*start point*/; i <= 100 /*end point*/; i += 2)
+   {
+      printf("%d\n", i);
+   }
+   for (int i = 100 /*start point*/; i >= 0 /*end point*/; i -= 3)
+   {
+      printf("%03d\n", i);
+   }
+   printf("************************************************************************\n");
+   for (int i = 10; i >= 1; i--)
+   {
+      printf("%02d\n", i);
+      // sleep(1); // the number in seconds // linux or mac
+      // Sleep(1000); seconds in ms // win
+   }
+   printf("BOOOOOM!!\nRamadan mubarak\n");
+
+   // break = Break out of a loop (STOP)
+   // continue = Skip current cycle of a loop (SKIP)
+   for (int i = 0; i <= 100; i++)
+   {
+      if (i == 3 || i == 6 || i == 12)
+      {
+         continue; // يتخطى باقي الاوامر وبعيد الحلقة
+      }
+
+      printf("%d\n", i);
+      if (i == 15)
+      {
+         break; // نخرج من هذه الحلقة فورا
+      }
+   }
+   printf("************************************************************************\n");
+   // Nested loop = a loop inside a loop :)
+   for (int i = 1; i <= 10; i++)
+   {
+      for (int j = 1; j <= 10; j++)
+      {
+         printf("%3d ", (j * i));
+      }
+      printf("\n");
+   }
+   // Drawing  a ragtangle :
+   int rows;
+   int columns;
+   char symbol_1;
+
+   printf("Enter the # of rows :");
+   scanf("%d", &rows);
+   printf("Enter the # of columns :");
+   scanf("%d", &columns);
+   printf("Enter a symbol to use :");
+   scanf(" %c", &symbol_1);
+
+   for (int i = 1; i <= rows; i++)
+   {
+      for (int j = 1; j <= columns; j++)
+      {
+         printf("%2c", symbol_1);
+      }
+      printf("\n");
+   }
+   printf("********************************************\n");
+   // pseudo-random = Appear random but are determined bty a mathimatical formula that
+   //                 uses  a seed value to generate a predivtable sequance of numbers.
+   //                 advenced : Mersenns Twister or /dev/random
+   srand(time(NULL)); // srand : seeds the random number
+
+   int max = 100;
+   int min = 50;
+
+   int randomNum1 = (rand() % (max - min + 1)) + min;
+   int randomNum2 = (rand() % (max - min + 1)) + min;
+   int randomNum3 = (rand() % (max - min + 1)) + min;
+
+   printf("%d %d %d\n", randomNum1, randomNum2, randomNum3);
+   // array = A fixed-size collection of elements of the smae data type
+   //         (Similer to a variable, but it holds more than 1 value)
+
+   int numbers[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+   char grades[] = {
+       'A',
+       'B',
+       'C',
+       'D',
+       'F',
+   };
+   int size = sizeof(numbers) / sizeof(numbers[0]);
+
+   for (int i = 0; i < size; i++)
+   {
+      printf("%4d", numbers[i]);
+   }
+   printf("\n");
+   // USER INPUT
+   int scoures[5] = {0};
+
+   for (int i = 0; i < 5; i++)
+   {
+      printf("Enter a scoure :");
+      scanf("%d", &scoures[i]);
+   }
+   for (int i = 0; i < 5; i++)
+   {
+      printf(" %d\n", scoures[i]);
+   }
+   // 2D array = An array where each element is an array
+   // array[][] = {{},{},{}};
+
+   char values[][3] = {{'1', '2', '3'},
+                       {'4', '5', '6'},
+                       {'7', '8', '9'},
+                       {'*', '0', '#'}};
+
+   for (int i = 0; i < 4; i++) // الاسطر : rows
+   {
+      for (int j = 0; j < 3; j++) // الاعمدة : columns
+      {
+         printf("%2c", values[i][j]);
+      }
+      printf("\n");
+   }
+   // Array of String
+   char fruit[3][100] = {""};
+   int size_ = sizeof(fruit) / sizeof(fruit[0]);
+   getchar();
+   for (int i = 0; i < size_; i++)
+   {
+      printf("Enter your name :");
+      fgets(fruit[i], sizeof(fruit[i]), stdin);
+      fruit[i][strlen(fruit[i]) - 1] = '\0';
+   }
+
+   for (int i = 0; i < size_; i++)
+   {
+      printf("%s\n", fruit[i]);
+   }
    return 0;
 }
 void hello(char name[], int age)

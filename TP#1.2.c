@@ -395,75 +395,203 @@ int main()
         // Declaration Part :
         int num_6 = 0;
         int lv = 0;
-        int sl = 0;
+        int sv = 0;
         int cont = 0;
         int sum_1 = 0;
         float avr_1 = 0;
+
         // Code :
         do
         {
-            do
-            {
-                printf("Enter a positive integer :");
-                scanf("%d", &num_6);
-                if (num_6 < 0)
-                { // لاعادة كامل الحلقة اذا كان المدخل سالبا دون تسجيل القيم
-                    continue;
-                }
-                else
-                {
-                    if (lv <= num_6)
-                    {
-                        if (sl > lv)
-                        {
-                            sl = lv;
-                        }
-                        else
-                        {
-                            sl = sl;
-                        }
-                        lv = num_6;
-                    }
-                    else
-                    {
-                        if (sl > num_6)
-                        {
-                            sl = num_6;
-                        }
-                        else
-                        {
-                            sl = sl;
-                        }
-                        lv = lv;
-                    }
-                    sum_1 = sum_1 + num_6;
-                    cont++;
-                }
-            } while (num_6 != 0);
-            avr_1 = (float)sum_1 / (float)cont;
-            printf("The sum = %d\n", sum_1);
-            printf("The avrage = %f\n", avr_1);
+            printf("Enter a positive integer :");
+            scanf("%d", &num_6);
 
-        } while (num_6 < 0);
+            if (cont == 0)
+            {
+                sv = num_6;
+            }
+            if (num_6 <= 0)
+            { // لاعادة كامل الحلقة اذا كان المدخل سالبا دون تسجيل القيم
+                continue;
+            }
+            if (num_6 > lv)
+            {
+                lv = num_6;
+            }
+            else if (num_6 <= sv)
+            {
+                sv = num_6;
+            }
+            sum_1 += num_6;
+            cont++;
+
+        } while (num_6 != 0);
+        avr_1 = (float)sum_1 / (float)cont;
+        printf("The largest value = %d \n The smallest value = %d \n", lv, sv);
+        printf("The sum = %d\n", sum_1);
+        printf("The avrage = %.2f\n", avr_1);
 
         break;
-        case 15 :
-            // Declaration Part 
-            float num_7 = 0.0f;
-            // Code :
-            if(num_7 > 0){
-                printf ("%d is positive\n", num_7);
-            }
-            else if (num_7 < 0){
-                printf ("%d is negative\n", num_7);
-            }
-            else
-            {
-                printf ("%d is null\n", num_7);
-            }
-            break;
-        case 16 :
-        //
+    case 15:
+        // Declaration Part
+        float num_7 = 0.0f;
+        // Code :
+        if (num_7 > 0)
+        {
+            printf("%d is positive\n", num_7);
+        }
+        else if (num_7 < 0)
+        {
+            printf("%d is negative\n", num_7);
+        }
+        else
+        {
+            printf("%d is null\n", num_7);
+        }
+        break;
+    case 16:
+        // Declaration Part :
+        int num_8;
+        int q_1;
+        int r_5;
+        int innum;
+        int reg_1;
+        // Code :
+        do
+        {
+            printf("Write you positive integer number :");
+            scanf("%d", &num_8);
+        } while (num_8 < 0);
+        reg_1 = num_8;
+        do
+        {
+            q_1 = num_8 / 10;
+            r_5 = num_8 % 10;
+            num_8 = q_1;
+            innum = (innum + r_5) * 10;
+        } while (q_1 > 0);
+        innum /= 10;
+        if (innum == reg_1)
+        {
+            printf("%d is a palindrome\n", reg_1);
+        }
+        else
+        {
+            printf("%d is not a palindrome\n", reg_1);
+        }
+        break;
+    case 17:
+        // Declaration Part:
+        int age_1;
+        // Code :
+        printf("HELLO THERE\n");
+        sleep(1);
+        do
+        {
+            printf("How old are you? :");
+            scanf("%d", age_1);
+        } while (age_1 <= 0);
+        if (age_1 < 12)
+        {
+            printf("You are still a Child :3\n");
+        }
+        else if (age_1 < 18)
+        {
+            printf("You are a Teenager lol\n");
+        }
+        else if (age_1 <= 59)
+        {
+            printf("You are an adult \n");
+        }
+        else
+        {
+            printf("All the respect to our Senior here\n");
+        }
+        break;
+    case 18: // GCD
+             // Declaration part
+        int num_9;
+        int num_10;
+        int r_7;
+
+        // Code :
+        do
+        {
+            printf("Enter your numbers to calculate the GCD\n");
+            printf("First number :");
+            scanf("%d", &num_9);
+            printf("Scond number :");
+            scanf("%d", &num_10);
+
+        } while (num_9 < 0 || num_10 <= 0 || num_9 < num_10);
+        int reg_2 = num_9;
+        int reg_3 = num_10;
+        do
+        {
+            r_7 = num_9 % num_10;
+            num_9 = num_10;
+            num_10 = r_7;
+        } while (r_7 != 0);
+        printf("The GCD(%d,%d) = %d\n", reg_2, reg_3, num_9);
+        break;
+    case 19:
+        // Declaration Part :
+        float x;
+        int n;
+        // Code :
+        do
+        {
+            printf("Enter your number :");
+            scanf("%f", &x);
+            printf("Enter the power n:");
+            scanf("%d", &n);
+        } while (n < 0);
+        float X = x;
+        for (int i = 0; i < n - 1; i++)
+        {
+            x = x * x;
+        }
+        printf("%.3f ^ %d = %.3f\n", X, n, x);
+        break;
+    case 20: // Fibonacci sequence:
+        // Declaratiob Part:
+        int num_11 = 1;
+        int num_12 = 0;
+        int limit;
+        // Code :
+        do
+        {
+            printf("Enter the limit of the Fibonacci sequence:");
+            scanf("%d", &limit);
+        } while (limit < 1);
+        printf("0");
+        for (int i = 1; i <= limit; i += num_11)
+        {
+            printf("%3d", i);
+            i = num_11 + num_12;
+            num_11 = num_12;
+            num_12 = i;
+        }
+        break;
+    case 21: // div 5
+             // Declaration Part
+        int num_13;
+        // Code:
+        printf("Enter the number :");
+        scanf("%d",&num_13);
+
+        if(num_13 % 5 == 0)
+        {
+            printf("The number is divisibale by 5\n");
+        }
+        else
+        {
+            printf("The number is not  divisibale by 5\n");
+        }
+        break;
+    case 22:
+    
+        break;
     default:
         break;
     }
