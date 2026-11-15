@@ -3,7 +3,6 @@
 int main()
 {
     int rows; // 10
-    char s = '*';
     int g = 0;
 
     scanf("%d", &rows);
@@ -18,15 +17,25 @@ int main()
         {                                         // in first line : 0 times + 1 = the number of symbol that get print
                                                   // in scend line : 2 times + 1
                                                   // in 3rd line : 4 times + 1
-            printf("%c", s);
+            if (i >= 5)
+            {
+                printf(" ");
+                continue;
+            }
+            printf("*");
         }
 
-        for (int l = (rows - g) * 2; l >= 0; l--)
+        for (int d = (rows - g) * 2; d >= 0; d--)
         {
             printf(" ");
         }
         for (int l = 0; l <= (rows - i) * 2; l++)
         {
+            if (i >= 5)
+            {
+                printf(" ");
+                continue;
+            }
             printf("*");
         }
         g++;
@@ -39,9 +48,9 @@ int main()
         {
             printf(" ");
         }
-        for (int k = ((rows - i ) * 4) + 2; k >= 0; k--) // number of stars "*" that get print
+        for (int k = ((rows - i) * 4) + 2; k >= 0; k--) // number of stars "*" that get print
         {
-            printf("%c", s);
+            printf("*");
         }
         printf("\n");
     }

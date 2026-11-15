@@ -9,49 +9,51 @@
 
 int main()
 {
-    int rows; // 10
-    char s = '*';
-    int g = 0;
-
-    scanf("%d", &rows);
-    for (int i = rows; i >= 0; i--) // Of Rows // 9 times + 1
+    float Q;
+    int q, P;
+    bool isInRang;
+    do
     {
-        for (int j = i; j >= 0; j--) // number of stars "*" that get print
-        {                            // in first line : 9 times + 1
-                                     // in scend line : 8 times + 1
-            printf(" ");
-        }
-        for (int k = 0; k <= (rows - i) * 2; k++) // number of stars "*" that get print
-        {                                         // in first line : 0 times + 1 = the number of symbol that get print
-                                                  // in scend line : 2 times + 1
-                                                  // in 3rd line : 4 times + 1
-            printf("%c", s);
-        }
-
-        for (int l = (rows - g) * 2; l >= 0; l--)
-        {
-            printf(" ");
-        }
-        for (int l = 0; l <= (rows - i) * 2; l++)
-        {
-            printf("*");
-        }
-        g++;
-        printf("\n");
-    }
-
-    for (int i = 0; i <= rows; i++) // Of Rows
+        printf("Which rang your quantity is ?:\n");
+        printf("[1]. 1 to 5(x)\n");
+        printf("[2]. 5 to 10(x)\n");
+        printf("[3]. 10 to 30(x)\n");
+        printf("[4]. 30 to 60(x)\n");
+        printf("[5]. from 60 and farther\n");
+        scanf("%d", &q);
+    } while (q < 1 && q > 5);
+    do
     {
-        for (int j = 0; j <= i * 2; j++) // number of stars "*" that get print
+        printf("Now, spisefy how much do you need :");
+        scanf("%f", &Q);
+        switch (q)
         {
-            printf(" ");
+        case 1:
+            P = 100;
+            isInRang = (Q >= 1 && Q < 5);
+            break;
+        case 2:
+            P = 90;
+            isInRang = (Q < 10);
+            break;
+        case 3:
+            P = 80;
+            isInRang = (Q < 30);
+            break;
+        case 4:
+            P = 70;
+            isInRang = (Q < 60);
+            break;
+        default:
+            P = 55;
+            isInRang = (Q >= 60);
+            break;
         }
-        for (int k = ((rows - i ) * 4) + 2; k >= 0; k--) // number of stars "*" that get print
-        {
-            printf("%c", s);
-        }
-        printf("\n");
-    }
 
+    } while (isInRang == false);
+
+    printf("The price by 1kg = %d DA\n ", P);
+    Q = Q * P;
+    printf("The total price = %.2f DA\n", Q);
     return 0;
 }
