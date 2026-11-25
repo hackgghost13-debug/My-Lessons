@@ -589,7 +589,12 @@ int main()
             printf("The number is not  divisibale by 5\n");
         }
         break;
-    case 22:
+    case 22: // Discount 
+        //Declaration Part :
+            int quantity = 0;
+            float Unit_p = 0.0f;
+            float Gross_amount = 0.0f;
+            float dis = 0.0f;
     
         break;
     default:

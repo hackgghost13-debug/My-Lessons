@@ -3,11 +3,12 @@
 int main()
 {
     int rows; // 10
+    
     int g = 0;
 
     scanf("%d", &rows);
     for (int i = rows; i >= 0; i--) // Of Rows // 9 times + 1
-    {
+    {int skip = rows / 2;
         for (int j = i; j >= 0; j--) // number of stars "*" that get print
         {                            // in first line : 9 times + 1
                                      // in scend line : 8 times + 1
@@ -17,7 +18,7 @@ int main()
         {                                         // in first line : 0 times + 1 = the number of symbol that get print
                                                   // in scend line : 2 times + 1
                                                   // in 3rd line : 4 times + 1
-            if (i >= 5)
+            if (i >= skip)
             {
                 printf(" ");
                 continue;
@@ -31,7 +32,7 @@ int main()
         }
         for (int l = 0; l <= (rows - i) * 2; l++)
         {
-            if (i >= 5)
+            if (i >= skip)
             {
                 printf(" ");
                 continue;

@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <ncurses.h>
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h> // Linux and mac
 // # include <windows.h> // windows
 // comment of single-line
@@ -84,9 +84,74 @@ double getMax(double C_2, double V_2)
       return V_2, C_2;
    }
 }
-int main()
-{ // make all the progrm work
 
+void basicLesson(void);
+void conditionalLesson(void);
+void functionLesson(void);
+void loopLesson(void);
+void drawingAndRandomLesson(void);
+void arrayLesson(void);
+
+int main(void)
+{
+   int choice = -1;
+
+   do
+   {
+      printf("\n===== C Lessons =====\n");
+      printf("1. Basic lesson\n");
+      printf("2. Conditional lesson\n");
+      printf("3. Function lesson\n");
+      printf("4. Loop lesson\n");
+      printf("5. Drawing and random lesson\n");
+      printf("6. Array lesson\n");
+      printf("0. Exit\n");
+      printf("Choose a lesson: ");
+
+      if (scanf("%d", &choice) != 1) // to denied the invalides inputs
+      {
+         printf("Please enter a number from the menu.\n");
+         while (getchar() != '\n') // reads and discards characters until it reaches the end of the input line
+         {
+         }
+         choice = -1;
+         continue;
+      }
+
+      switch (choice)
+      {
+      case 1:
+         basicLesson();
+         break;
+      case 2:
+         conditionalLesson();
+         break;
+      case 3:
+         functionLesson();
+         break;
+      case 4:
+         loopLesson();
+         break;
+      case 5:
+         drawingAndRandomLesson();
+         break;
+      case 6:
+         arrayLesson();
+         break;
+      case 0:
+         printf("Goodbye!\n");
+         break;
+      default:
+         printf("Invalid choice. Please enter a number from 0 to 6.\n");
+         break;
+      }
+   } while (choice != 0);
+
+   return 0;
+}
+
+void basicLesson(void)
+{
    printf("I like mhadjib\n"); /*
     To print some messages or values
     We use \n to go to new line and its called "New Line Charcter"
@@ -280,7 +345,10 @@ int main()
    printf("%d\n", h);
    printf("%.4f\n", H);
    printf("%f\n%f\n%f\n", K, I, U);
+}
 
+void conditionalLesson(void)
+{
    // if statement = Do some code if condition is true .
    //                If the condition is false , don't do it.
    // Intergers
@@ -291,8 +359,7 @@ int main()
    if (scanf("%d", &age_) != 1) // We can use this to checks whether an integer was read
    {
       printf("Please ,Enter just numbers\n");
-
-      return 1; // if the user entered a wrong data type , the program will exit and tell the system that something went wrong
+      return;
    }
 
    if ((age_ > 0) && (age_ < 200))
@@ -489,6 +556,10 @@ int main()
    {
       printf("Cloudy out Side\n");
    }
+}
+
+void functionLesson(void)
+{
    // functions = A reusable section of code that can be invoked " called "
    //          Arguments can be sent to a function so that it can use them
    int age_0 = 0;
@@ -536,10 +607,14 @@ int main()
    // Function Prototype : Provide the compiler w/ information about a function's:
    //                      name , return type , and parametrs before its actual definition .
    //                      Enable type checking and allows function to be used before they're define .
-   //                      Improve redability , organization, and helps prevent errors
-   //                      Let as write the function after the main function
+   //                      Improve readability, organization, and helps prevent errors
+   //                      Lets us write the function after the main function
 
    hello("sam", 25);
+}
+
+void loopLesson(void)
+{
    //  while loop : Countiue running some code while the condition is true
    //               Condition must be true for us to enter while loop
    //               !!!We only enter the while loop if the condition is true!!!
@@ -634,6 +709,10 @@ int main()
    }
    printf("************************************************************************\n");
    // Nested loop = a loop inside a loop :)
+}
+
+void drawingAndRandomLesson(void)
+{
    for (int i = 1; i <= 10; i++)
    {
       for (int j = 1; j <= 10; j++)
@@ -666,7 +745,7 @@ int main()
    // pseudo-random = Appear random but are determined bty a mathimatical formula that
    //                 uses  a seed value to generate a predivtable sequance of numbers.
    //                 advenced : Mersenns Twister or /dev/random
-   srand(time(NULL)); // srand : seeds the random number
+   srand(time(NULL)); // seed the random number generator
 
    int max = 100;
    int min = 50;
@@ -676,17 +755,15 @@ int main()
    int randomNum3 = (rand() % (max - min + 1)) + min;
 
    printf("%d %d %d\n", randomNum1, randomNum2, randomNum3);
-   // array = A fixed-size collection of elements of the smae data type
-   //         (Similer to a variable, but it holds more than 1 value)
+   printf("*************************************************\n");
+}
 
+void arrayLesson(void)
+{
+   // array = A fixed-size collection of elements of the same data type
    int numbers[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-   char grades[] = {
-       'A',
-       'B',
-       'C',
-       'D',
-       'F',
-   };
+   char grades[] = {'A', 'B', 'C', 'D', 'F'};
+
    int size = sizeof(numbers) / sizeof(numbers[0]);
 
    for (int i = 0; i < size; i++)
@@ -694,51 +771,73 @@ int main()
       printf("%4d", numbers[i]);
    }
    printf("\n");
+
+   for (int j = 0; j < (int)(sizeof(grades) / sizeof(grades[0])); j++)
+   {
+      printf("%2c", grades[j]);
+   }
+   printf("\n");
+
    // USER INPUT
-   int scoures[5] = {0};
+   int scours[5] = {0};
+   int size_ = sizeof(scours) / sizeof(scours[0]);
 
-   for (int i = 0; i < 5; i++)
+   for (int i = 0; i < size_; i++)
    {
-      printf("Enter a scoure :");
-      scanf("%d", &scoures[i]);
+      printf("Enter a score : ");
+      scanf("%d", &scours[i]);
    }
-   for (int i = 0; i < 5; i++)
+
+   for (int i = 0; i < size_; i++)
    {
-      printf(" %d\n", scoures[i]);
+      printf("%d\n", scours[i]);
    }
-   // 2D array = An array where each element is an array
-   // array[][] = {{},{},{}};
 
-   char values[][3] = {{'1', '2', '3'},
-                       {'4', '5', '6'},
-                       {'7', '8', '9'},
-                       {'*', '0', '#'}};
+   // 2D array
+   // 2D array =  arrays inside an array
+   //              first [] contans the numbers of  arrays  and it is not necessary to specify it's max
+   //              second [] contans the numbers of elements in each array and it is  necessary to specify it's max
+   //             we can use it in matrixes , tables ...
+   int numbers_[][3] = {{1, 2, 3},
+                        {4, 5, 6},
+                        {7, 8, 9}};
+   int IDS[2][3];
 
-   for (int i = 0; i < 4; i++) // الاسطر : rows
+   IDS[0][0] = 1;
+   IDS[0][1] = 2;
+   IDS[0][2] = 3;
+   IDS[1][0] = 4;
+   IDS[1][1] = 5;
+   IDS[1][2] = 6;
+   printf("%d\n", IDS[1][0]);
+
+   char aTof[3][2] = {{'A', 'B'},
+                      {'C', 'D'},
+                      {'E', 'F'}};
+
+   int rows = sizeof(aTof) / sizeof(aTof[0]);
+   int colunms = sizeof(aTof[0]) / sizeof(aTof[0][0]);
+
+   for (int i = 0; i < rows; i++)
    {
-      for (int j = 0; j < 3; j++) // الاعمدة : columns
+      for (int j = 0; j < colunms; j++)
       {
-         printf("%2c", values[i][j]);
+         printf(" %c", aTof[i][j]);
       }
       printf("\n");
    }
-   // Array of String
-   char fruit[3][100] = {""};
-   int size_ = sizeof(fruit) / sizeof(fruit[0]);
-   getchar();
-   for (int i = 0; i < size_; i++)
-   {
-      printf("Enter your name :");
-      fgets(fruit[i], sizeof(fruit[i]), stdin);
-      fruit[i][strlen(fruit[i]) - 1] = '\0';
-   }
+   // Array of strings
+   // string  array :
+   char cars[][10] = {"Tersam", "Toyota", "BYD"};
 
-   for (int i = 0; i < size_; i++)
+   strcpy(cars[0], "KIA");
+
+   for (int i = 0; i < sizeof(cars) / sizeof(cars[0]); i++)
    {
-      printf("%s\n", fruit[i]);
+      printf("%s\n", cars[i]);
    }
-   return 0;
 }
+
 void hello(char name[], int age)
 {
    printf("Hello ,%s!\n", name);
