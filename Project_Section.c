@@ -299,6 +299,7 @@ int main(void)
     { // of minuts
       while (sec >= 0)
       { // of seconds
+        system("clear");
         printf("%02d : %02d : %02d \n", H, min, sec);
         sleep(1);
         sec--;

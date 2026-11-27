@@ -84,8 +84,7 @@ int main(void)
         // Declaration Part :
         int n = 0;
         long double e = 1.0f;
-        long double E = 0.0f;
-        int sum_1 = 0;
+        long double E = 1.0f;
         long int f_n = 1;
         // Code :
         do
@@ -93,27 +92,27 @@ int main(void)
             printf("Enter the value of n :");
             scanf("%d", &n);
         } while (n < 0);
-        for (int i = 1; i < n + 1; i++)
+        for (int i = 2; i < n + 1; i++)
         {
             f_n *= i;
             e += (long double)1 / (long double)f_n;
 
-            E += (long double)1 / (long double)i;
+            E += (long double)1 / (long double)(i);
         }
         printf("e = %llf\n", e);
         printf("E = %llf\n", E);
         break;
-    case 7: // is a prime number
+    case 6: // is a prime number
         // Declaration Part :
         int value = 0;
         int r = 0;
-        bool isPrime = true;
         // Code :
         do
         {
             printf("Enter a value");
             scanf("%d", &value);
         } while (value <= 0);
+
         printf("The prime number between 1 and %d are :\n", value);
 
         for (value; value >= 1; value--)
@@ -135,7 +134,7 @@ int main(void)
         }
         printf("\n");
         break;
-    case 8: // Inverser :
+    case 7: // reverser :
             // Declaration Part :
         int Num = 0;
         int Q = 0;
@@ -156,7 +155,7 @@ int main(void)
         }while(Q != 0);
         printf("The inverse : %d\n", Inv);
         break;
-    case 9 :
+    case 8 :
             // Declaration Part :
         int Num_1 = 0;
         int Q_1 = 0;

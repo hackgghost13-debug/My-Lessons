@@ -91,6 +91,7 @@ void functionLesson(void);
 void loopLesson(void);
 void drawingAndRandomLesson(void);
 void arrayLesson(void);
+void SwapLesson(void);
 
 int main(void)
 {
@@ -105,6 +106,7 @@ int main(void)
       printf("4. Loop lesson\n");
       printf("5. Drawing and random lesson\n");
       printf("6. Array lesson\n");
+      printf("7. Swap lesson\n");
       printf("0. Exit\n");
       printf("Choose a lesson: ");
 
@@ -137,6 +139,9 @@ int main(void)
          break;
       case 6:
          arrayLesson();
+         break;
+      case 7:
+         SwapLesson();
          break;
       case 0:
          printf("Goodbye!\n");
@@ -761,14 +766,14 @@ void drawingAndRandomLesson(void)
 void arrayLesson(void)
 {
    // array = A fixed-size collection of elements of the same data type
-   int numbers[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+   int numberList[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
    char grades[] = {'A', 'B', 'C', 'D', 'F'};
 
-   int size = sizeof(numbers) / sizeof(numbers[0]);
+   int size = sizeof(numberList) / sizeof(numberList[0]);
 
    for (int i = 0; i < size; i++)
    {
-      printf("%4d", numbers[i]);
+      printf("%4d", numberList[i]);
    }
    printf("\n");
 
@@ -815,29 +820,89 @@ void arrayLesson(void)
                       {'C', 'D'},
                       {'E', 'F'}};
 
-   int rows = sizeof(aTof) / sizeof(aTof[0]);
-   int colunms = sizeof(aTof[0]) / sizeof(aTof[0][0]);
+   int matrixRows = sizeof(aTof) / sizeof(aTof[0]);
+   int matrixColumns = sizeof(aTof[0]) / sizeof(aTof[0][0]);
 
-   for (int i = 0; i < rows; i++)
+   for (int i = 0; i < matrixRows; i++)
    {
-      for (int j = 0; j < colunms; j++)
+      for (int j = 0; j < matrixColumns; j++)
       {
          printf(" %c", aTof[i][j]);
       }
       printf("\n");
    }
-   // Array of strings
-   // string  array :
-   char cars[][10] = {"Tersam", "Toyota", "BYD"};
+   int rows = 0;
+   int colunms = 0;
 
-   strcpy(cars[0], "KIA");
+   printf("Rows :");
+   scanf("%d", &rows);
+   printf("Colunms :");
+   scanf("%d", &colunms);
 
-   for (int i = 0; i < sizeof(cars) / sizeof(cars[0]); i++)
+   int numbers[][3] = {{1, 2, 3},
+                       {4, 5, 6},
+                       {7, 8, 9}};
+   for (int j = 0; j < 3; j++)
    {
-      printf("%s\n", cars[i]);
+      for (int i = 0; i < 3; i++)
+      {
+         printf("%2d", numbers[j][i]);
+      }
+      printf("\n");
+   }
+   if (rows < 1 || rows > 3 || colunms < 1 || colunms > 3)
+   {
+      printf("Invalid row or column. Choose values from 1 to 3.\n");
+   }
+   else
+   {
+      printf("%2d\n", numbers[rows - 1][colunms - 1]);
+      printf("[.][.][.]\n[.][.][.]\n[.][.][.]\n\n");
+      if (rows == 1 && colunms == 2)
+      {
+         system("clear");
+         printf("[.][x][.]\n[.][.][.]\n[.][.][.]\n");
+         sleep(1);
+         system("clear");
+         printf("[.][.][.]\n[.][x][.]\n[.][.][.]\n");
+         sleep(1);
+         system("clear");
+         printf("[.][.][.]\n[.][.][.]\n[.][x][.]\n");
+         sleep(1);
+      }
+      else
+      {
+         printf("You mess \n");
+      }
+   }
+   // Array of Strings
+   char products[5][100] = {""};
+   int size_2 = sizeof(products) / sizeof(products[0]);
+
+   for (int i = 0; i < size_2; i++)
+   {
+      printf("Enter your name :");
+      fgets(products[i], sizeof(products[i]), stdin);
+      products[i][strcspn(products[i], "\n")] = '\0';
+   }
+   for (int j = 0; j < size_2; j++)
+   {
+      printf("%s\n", products[j]);
    }
 }
+void SwapLesson(void)
+{
+   char X[15] = "Water";
+   char Y[15] = "lemond"; // we must keep them in the same size !!
+   char temp[15];
+   // Code :
+   strcpy(temp, X);
+   strcpy(X, Y);
+   strcpy(Y, temp);
 
+   printf("X = %s\n", X);
+   printf("Y = %s\n", Y);
+}
 void hello(char name[], int age)
 {
    printf("Hello ,%s!\n", name);

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 
 const float mf = 5278.9681;
 float value2 = -1.0;
@@ -134,51 +134,68 @@ int main(void)
         printf("******Thank you :3 ***************\n");
         break;
     case 4:
+
+    {
         printf("Tp#4 :Average\n");
         // Declaration part
-        char name_01[20] = "";
+        int size = 0;
         float mark01 = 0.0f;
-        float average01 = 0.0f;
-        float Avrage = 0.0f;
-        int c = 0;
+        float sum01 = 0.0f;
         int F = 0;
         // Code
-        printf("PROGRAM TO DISPLAY MARKS(One student a time)\n");
-        printf("Enter your name :");
-        getchar(); // to clear the input buffer
-        fgets(name_01, sizeof(name_01), stdin);
-        printf("How many modules do you have :");
-        while (F <= 0)
+        printf("PROGRAM TO DISPLAY MARKS\n");
+        sleep(1);
+        system("clear");
+        do
         {
-            scanf("%d", &F);
-        } // To recive the endpoint
-        while (c < F)
-        {
-            c++;               // to add one evry time
-            mark01 = -1;       // reset the mark value to enter the loop again
-            while (mark01 < 0) // to check each time that the mark is not negative
-            {
-                printf("Enter Your #%d Mark:", c);
-                scanf("%f", &mark01);
-            }
-            average01 = average01 + mark01;
-        }
-        Avrage = average01 / F;
-        getchar();
-        printf("Name : %s", name_01);
-        name_01[strlen(name_01) - 1] = '\0';
-        printf("You average : %.2f\n", Avrage);
-        if (Avrage <= 10)
-        {
-            printf("You failed , sorry :(\n");
-        }
-        else
-        {
-            printf("You pass , Good Work :)\n");
-        }
+            printf("Enter the number of student :");
+            scanf("%d", &size);
+        } while (size <= 0);
 
+        char name_01[][20] = {""};
+
+        for (int i = 0; i < size; i++)
+        {
+            printf("Enter the  name of student :");
+            getchar();
+            fgets(name_01[i], sizeof(name_01[i]), stdin);
+            name_01[i][strcspn(name_01[i], "\n")] = '\0';
+
+            printf("How many modules do you have :");
+
+            do
+            {
+                scanf("%d", &F);
+            } while (F <= 0); // To recive the endpoint
+            float Avrage[i];
+            for (int c = 0; c < F; c++)
+            {
+                do
+                {
+                    printf("Enter #%d Mark:", c);
+                    scanf("%f", &mark01);
+                } while (mark01 < 0);
+                sum01 += mark01;
+            }
+            Avrage[i] = sum01 / (float)F;
+
+            getchar();
+            printf("Name : %s \n", name_01[i]);
+            name_01[i][strcspn(name_01[i], "\n")] = '\0';
+            printf("You average : %.2f\n", Avrage[i]);
+
+            if (Avrage[i] <= 10)
+            {
+                printf("You failed , sorry :(\n");
+            }
+            else
+            {
+                printf("You pass , Good Work :)\n");
+            }
+        }
         printf("******Thank you :3 ********\n");
-        break;
+    }
+    break;
     case 5:
         printf("Tp#5 :Operations\n");
         // Declaration part
